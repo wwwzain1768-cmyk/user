@@ -1,0 +1,100 @@
+/* style.css */
+/* إعدادات عامة */
+* { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; }
+body { background-color: #e9ecef; color: #333; display: flex; justify-content: center; align-items: center; min-height: 100vh; padding-top: 10px; }
+
+/* شريط حالة الاتصال */
+.status-banner { position: fixed; top: 0; left: 0; width: 100%; text-align: center; padding: 10px 46px 10px 12px; color: white; font-weight: bold; z-index: 10002; transition: background-color 0.3s; font-size: 1.1rem; }
+.status-banner.online { background-color: #27ae60; }
+.status-banner.offline { background-color: #e74c3c; display: block !important; }
+.status-banner.syncing { background-color: #f39c12; display: block !important; }
+
+/* تصميم الحاويات */
+.main-container { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 500px; text-align: center; }
+.dashboard-container { max-width: 800px; padding: 0; }
+h2 { margin-bottom: 20px; color: #2c3e50; }
+
+/* الإحصائيات */
+.dashboard-stats { display: flex; justify-content: space-between; margin-bottom: 20px; gap: 15px; text-align: center; padding: 0 30px;}
+.stat-box { background-color: #34495e; color: white; padding: 15px; border-radius: 8px; flex: 1; font-weight: bold; font-size: 1.1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.stat-box span { display: block; margin-top: 10px; font-size: 1.5rem; color: #f1c40f; }
+
+/* تصميم الحقول */
+.form-group { margin-bottom: 20px; padding: 0 30px; }
+input[type="text"], input[type="password"], input[type="number"], input[type="date"] { width: 100%; padding: 15px; border: 2px solid #bdc3c7; border-radius: 8px; font-size: 1.1rem; outline: none; transition: 0.3s; text-align: right; }
+input[type="text"]:focus, input[type="password"]:focus, input[type="number"]:focus, input[type="date"]:focus { border-color: #3498db; box-shadow: 0 0 8px rgba(52, 152, 219, 0.3); }
+
+/* تصميم الأزرار */
+.primary-btn { width: calc(100% - 60px); padding: 15px; background-color: #3498db; color: white; border: none; border-radius: 8px; font-size: 1.2rem; cursor: pointer; transition: 0.3s; margin-bottom: 10px; }
+.primary-btn:hover { background-color: #2980b9; }
+.secondary-btn { width: 100%; padding: 15px; background-color: #e74c3c; color: white; border: none; border-radius: 8px; font-size: 1.2rem; cursor: pointer; transition: 0.3s; }
+.secondary-btn:hover { background-color: #c0392b; }
+.error-msg { color: #e74c3c; margin-top: 15px; font-weight: bold; }
+
+/* شاشة الترحيب المتحركة */
+.greeting-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(44, 62, 80, 0.9); display: flex; justify-content: center; align-items: center; z-index: 1000; }
+.greeting-box { background: white; padding: 50px; border-radius: 15px; text-align: center; box-shadow: 0 15px 50px rgba(0,0,0,0.3); animation: slideDown 0.6s ease-out; }
+@keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.animate-text { font-size: 2rem; color: #2c3e50; margin-bottom: 30px; animation: pulse 1s infinite alternate; }
+@keyframes pulse { from { transform: scale(1); } to { transform: scale(1.05); color: #27ae60; } }
+
+/* نافذة التنبيهات المخصصة */
+.custom-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; z-index: 10000; }
+.modal-content { background: white; padding: 30px; border-radius: 15px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.3); animation: popModal 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); min-width: 300px; max-width: 90%; }
+@keyframes popModal { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+.modal-content p { font-size: 1.3rem; color: #2c3e50; margin-bottom: 25px; font-weight: bold; }
+.modal-actions { display: flex; gap: 15px; justify-content: center; }
+.modal-btn { padding: 12px 20px; border: none; border-radius: 8px; font-size: 1.1rem; cursor: pointer; transition: 0.3s; color: white; flex: 1; }
+.btn-confirm { background-color: #27ae60; }
+.btn-confirm:hover { background-color: #2ecc71; }
+.btn-cancel { background-color: #e74c3c; }
+.btn-cancel:hover { background-color: #c0392b; }
+
+/* تبويبات الزبائن والمنتهي */
+.tab-btn { flex: 1; padding: 15px; border: none; background: none; font-size: 1.1rem; cursor: pointer; transition: 0.3s; font-weight: bold; color: #7f8c8d; }
+.tab-btn.active { background-color: white; color: #3498db; border-bottom: 3px solid #3498db; }
+.customer-tab-content { display: none; }
+.customer-tab-content.active { display: block; animation: fadeIn 0.5s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* تصميم قائمة الزبائن ونظام التسديد */
+.customers-list { padding: 0 30px; padding-bottom: 30px;}
+.customer-item { background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 15px; border: 1px solid #e9ecef; text-align: right; cursor: pointer; transition: 0.3s; }
+.customer-item:hover { box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+
+/* تفاصيل الزبون المخفية */
+.customer-header { display: flex; justify-content: space-between; align-items: center; font-size: 1.2rem; font-weight: bold; color: #2c3e50; }
+.customer-details { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #bdc3c7; animation: fadeInDown 0.3s ease-out; }
+.customer-details.show { display: block; }
+@keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+.customer-info p { margin-bottom: 8px; font-size: 1.1rem; }
+
+/* أزرار وحالات التسديد */
+.payment-action { display: flex; gap: 8px; flex-direction: column; align-items: center;}
+.pay-btn { background-color: #27ae60; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: 0.3s; width: 100%;}
+.pay-btn:hover { background-color: #2ecc71; }
+.renew-btn { background-color: #1abc9c; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: 0.3s; width: 100%;}
+.renew-btn:hover { background-color: #16a085; }
+.add-debt-btn { background-color: #8e44ad; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: 0.3s; width: 100%;}
+.add-debt-btn:hover { background-color: #9b59b6; }
+.history-btn { background-color: #34495e; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: 0.3s; width: 100%;}
+.history-btn:hover { background-color: #2c3e50; }
+.edit-btn { background-color: #f39c12; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: 0.3s; width: 100%;}
+.edit-btn:hover { background-color: #e67e22; }
+.delete-btn { background-color: #e74c3c; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: 0.3s; width: 100%;}
+.delete-btn:hover { background-color: #c0392b; }
+.note-btn { background-color: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; font-size: 1rem; cursor: pointer; transition: 0.3s; width: 100%;}
+.note-btn:hover { background-color: #2980b9; }
+.paid-badge { background-color: #ecf0f1; color: #27ae60; padding: 10px 20px; border-radius: 5px; font-weight: bold; border: 1px solid #27ae60; width: 100%; text-align: center;}
+
+/* عناصر السجل */
+.history-item { padding: 10px; border-bottom: 1px solid #bdc3c7; font-size: 1rem; background: #f8f9fa; margin-bottom: 5px; border-radius: 5px;}
+.history-item:last-child { margin-bottom: 0; }
+
+.dismiss-status-btn { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: white; border: none; border-radius: 6px; width: 32px; height: 32px; font-size: 1.3rem; cursor: pointer; }
+.dismiss-status-btn:hover { background: rgba(255,255,255,0.3); }
+.dashboard-top-actions { display: flex; gap: 10px; padding: 0 30px; margin: 0 0 20px 0; }
+.top-action-btn { width: auto; flex: 1; margin: 0; }
+.customer-name-wrap { display: flex; flex-direction: column; gap: 5px; }
+.customer-debt-inline { font-size: 0.9rem; color: #e74c3c; font-weight: bold; }
