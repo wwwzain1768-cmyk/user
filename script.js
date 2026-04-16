@@ -302,7 +302,7 @@ onAuthStateChanged(auth, async (user) => {
     document.getElementById('auth-screen').style.display = 'none';
     const savedLogin = await localforage.getItem('savedTowerLogin');
     if (savedLogin && savedLogin.towerCode) {
-      currentLoggedTowerCode = savedLogin.towerCode;
+      currentLoggedTowerCode = String(savedLogin.towerCode);
       currentLoggedTowerName = savedLogin.towerName || "";
       goToDashboardDirect();
       if (navigator.onLine) processSyncQueue();
@@ -407,7 +407,7 @@ window.showNoteModal = function(msg, onConfirmCallback) {
 };
 
 window.checkCode = function() {
-  let enteredCode = document.getElementById('enteredCode').value;
+  let enteredCode = document.getElementById('enteredCode').value.trim();
   let errorMsg = document.getElementById('error-msg');
 
   if (allTowersData.length === 0) {
@@ -417,7 +417,7 @@ window.checkCode = function() {
 
   let foundTower = null;
   for (let i = 0; i < allTowersData.length; i++) {
-    if (allTowersData[i].towerCode === enteredCode) {
+    if (String(allTowersData[i].towerCode) === enteredCode) {
       foundTower = allTowersData[i];
       break;
     }
@@ -425,7 +425,7 @@ window.checkCode = function() {
 
   if (foundTower) {
     errorMsg.innerText = "";
-    currentLoggedTowerCode = foundTower.towerCode;
+    currentLoggedTowerCode = String(foundTower.towerCode);
     currentLoggedTowerName = foundTower.towerName || "";
     document.getElementById('greeting-text').innerText = currentLoggedTowerName;
     document.getElementById('login-section').style.display = 'none';
@@ -514,7 +514,7 @@ window.addCustomer = async function() {
     let realDates = buildRealSubscriptionDates(startDate);
     let newCustomer = {
       id: Date.now(),
-      towerCode: currentLoggedTowerCode,
+      towerCode: String(currentLoggedTowerCode),
       name: name,
       price: price,
       startDate: realDates.startDate,
@@ -578,7 +578,7 @@ window.renderCustomers = function() {
   listContainer.innerHTML = "";
   expiredContainer.innerHTML = "";
 
-  let towerCustomers = allCustomersData.filter(cust => cust.towerCode === currentLoggedTowerCode);
+  let towerCustomers = allCustomersData.filter(cust => String(cust.towerCode) === String(currentLoggedTowerCode));
 
   towerCustomers.sort((a, b) => {
     let today = new Date();
