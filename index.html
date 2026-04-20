@@ -77,7 +77,11 @@
     <div id="dashboard-section" class="main-container dashboard-container" style="display: none; padding-top: 30px;">
         <div class="form-group" style="display: flex; gap: 10px; padding: 0 30px; margin-bottom: 20px;">
             <input type="text" id="searchInput" placeholder="بحث عن زبون..." onkeyup="searchCustomers()" style="flex: 1; padding: 15px; border: 2px solid #bdc3c7; border-radius: 8px; font-size: 1.1rem; text-align: right; outline: none;">
-            <button class="primary-btn" onclick="searchCustomers()" style="width: auto; margin-bottom: 0; padding: 0 20px;">بحث</button>
+            <button class="primary-btn" id="searchBtn" onclick="searchCustomers()" style="width: auto; margin-bottom: 0; padding: 0 20px;">بحث</button>
+        </div>
+
+        <div id="search-offline-block" class="search-offline-block" style="display: none;">
+            🚫 البحث غير متاح في وضع عدم الاتصال (أوفلاين)
         </div>
 
         <div class="dashboard-top-actions"><button class="primary-btn top-action-btn" onclick="toggleAddForm()">إضافة زبون</button><button class="secondary-btn top-action-btn" onclick="switchAccount()">تبديل حساب</button></div>
